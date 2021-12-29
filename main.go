@@ -25,19 +25,19 @@ func runMain() {
 		core.Error(fmt.Sprintf("error reading in secrets map %s", err.Error()))
 		return
 	}
-	
-	segmentIOKey := fmt.Sprintf("SEGMENT_IO_KEY_%s", strings.ToUpper(branch))
-	segmentIOValue := secretsMap[segmentIOKey]
+
+	segmentIOValue := secretsMap[fmt.Sprintf("SEGMENT_IO_KEY_%s", strings.ToUpper(branch))]
 	if segmentIOValue == "" {
-		segmentIOKey_DEV := fmt.Sprintf("SEGMENT_IO_KEY_DEVELOPMENT")
-		segmentIOValue = secretsMap[segmentIOKey_DEV] 
+		fmt.Println("falling back SEGMENT_IO_KEY_DEVELOPMENT")
+		segmentIOValue = secretsMap["SEGMENT_IO_KEY_DEVELOPMENT"]
 	}
-	splitIOKey := fmt.Sprintf("SPLIT_IO_JS_%s", strings.ToUpper(branch))
-	splitIOValue := secretsMap[splitIOKey]
-	if segmentIOValue == "" {
-		splitIOKey_DEV := fmt.Sprintf("SPLIT_IO_JS_DEVELOPMENT")
-		splitIOValue = secretsMap[splitIOKey_DEV] 
+
+	splitIOValue := secretsMap[fmt.Sprintf("SPLIT_IO_JS_%s", strings.ToUpper(branch))]
+	if splitIOValue == "" {
+		fmt.Println("falling back SPLIT_IO_JS_DEVELOPMENT")
+		splitIOValue = secretsMap["SPLIT_IO_JS_DEVELOPMENT"]
 	}
+
 	core.SetOutput("FEATURE_FLAG_API_KEY", splitIOValue)
 	core.SetOutput("SEGMENT_IO_KEY", segmentIOValue)
 }
