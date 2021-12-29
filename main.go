@@ -10,7 +10,7 @@ import (
 )
 
 func runMain() {
-	secrets := os.Getenv("secrets")
+	secrets := os.Getenv("SECRETS")
 	if secrets == "" {
 		core.Error("secrets is not passed")
 		return
@@ -25,8 +25,14 @@ func runMain() {
 		core.Error(fmt.Sprintf("error reading in secrets map %s", err.Error()))
 		return
 	}
+	
 	segmentIOKey := fmt.Sprintf("SEGMENT_IO_KEY_%s", strings.ToUpper(branch))
 	segmentIOValue := secretsMap[segmentIOKey]
+	
+	splitIOKey := fmt.Sprintf("SPLIT_IO_JS_%s", strings.ToUpper(branch))
+	splitIOValue := secretsMap[splitIOKey]
+	
+	core.SetOutput("FEATURE_FLAG_API_KEY", splitIOValue)
 	core.SetOutput("SEGMENT_IO_KEY", segmentIOValue)
 }
 

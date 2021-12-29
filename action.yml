@@ -1,10 +1,18 @@
-name: 'Your name here'
+name: 'AptyInc'
 description: 'Provide a description here'
-author: 'Your name or organization here'
+author: 'SaiUmesh Dhanewar'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  SECRETS:
+    description: '${{ toJson(secrets) }}'
+    required: true
+  branch:
+    description: branch name
+    required: true
 runs:
   using: 'node12'
   main: 'dist/index.js'
+outputs:
+   FEATURE_FLAG_API_KEY:
+    description: FEATURE_FLAG_API_KEY
+   SEGMENT_IO_KEY:
+    description: SEGMENT_IO_KEY
