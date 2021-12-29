@@ -28,13 +28,13 @@ func runMain() {
 
 	segmentIOValue := secretsMap[fmt.Sprintf("SEGMENT_IO_KEY_%s", strings.ToUpper(branch))]
 	if segmentIOValue == "" {
-		fmt.Println("falling back SEGMENT_IO_KEY_DEVELOPMENT")
+		core.Warning("falling back SEGMENT_IO_KEY_DEVELOPMENT")
 		segmentIOValue = secretsMap["SEGMENT_IO_KEY_DEVELOPMENT"]
 	}
 
 	splitIOValue := secretsMap[fmt.Sprintf("SPLIT_IO_JS_%s", strings.ToUpper(branch))]
 	if splitIOValue == "" {
-		fmt.Println("falling back SPLIT_IO_JS_DEVELOPMENT")
+		core.Warning("falling back SPLIT_IO_JS_DEVELOPMENT")
 		splitIOValue = secretsMap["SPLIT_IO_JS_DEVELOPMENT"]
 	}
 
