@@ -28,10 +28,16 @@ func runMain() {
 	
 	segmentIOKey := fmt.Sprintf("SEGMENT_IO_KEY_%s", strings.ToUpper(branch))
 	segmentIOValue := secretsMap[segmentIOKey]
-	
+	if segmentIOValue == "" {
+		segmentIOKey_DEV := fmt.Sprintf("SEGMENT_IO_KEY_DEVELOPMENT")
+		segmentIOValue = secretsMap[segmentIOKey_DEV] 
+	}
 	splitIOKey := fmt.Sprintf("SPLIT_IO_JS_%s", strings.ToUpper(branch))
 	splitIOValue := secretsMap[splitIOKey]
-	
+	if segmentIOValue == "" {
+		splitIOKey_DEV := fmt.Sprintf("SPLIT_IO_JS_DEVELOPMENT")
+		splitIOValue = secretsMap[splitIOKey_DEV] 
+	}
 	core.SetOutput("FEATURE_FLAG_API_KEY", splitIOValue)
 	core.SetOutput("SEGMENT_IO_KEY", segmentIOValue)
 }
