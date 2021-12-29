@@ -26,7 +26,8 @@ func runMain() {
 		return
 	}
 	segmentIOKey := fmt.Sprintf("SEGMENT_IO_KEY_%s", strings.ToUpper(branch))
-	core.SetOutput("SEGMENT_IO_KEY", segmentIOKey)
+	segmentIOValue := secretsMap[segmentIOKey]
+	core.SetOutput("SEGMENT_IO_KEY", segmentIOValue)
 }
 
 func main() {
