@@ -15,7 +15,7 @@ func runMain() {
 		core.Error("secrets is not passed")
 		return
 	}
-	branch := os.Getenv("branch")
+	branch := os.Getenv("BRANCH_NAME")
 	if branch == "" {
 		core.Error("branch is not passed")
 		return

@@ -5,7 +5,7 @@ inputs:
   SECRETS:
     description: "${{ toJson(secrets) }}"
     required: true
-  branch:
+  BRANCH_NAME:
     description: branch name
     required: true
 runs:
