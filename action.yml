@@ -3,7 +3,7 @@ description: 'Provide a description here'
 author: 'SaiUmesh Dhanewar'
 inputs:
   SECRETS:
-    description: '${{ toJson(secrets) }}'
+    description: "${{ toJson(secrets) }}"
     required: true
   branch:
     description: branch name
